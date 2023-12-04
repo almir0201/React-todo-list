@@ -1,12 +1,20 @@
-import React from 'react'
-import { FcCheckmark } from 'react-icons/fc'
-import { LiaTimesSolid } from 'react-icons/lia'
-import { AiOutlineUndo } from 'react-icons/ai'
+import React from 'react';
+import { Button } from './ui/Button';
+import { FcCheckmark } from 'react-icons/fc';
+import { LiaTimesSolid } from 'react-icons/lia';
+import { AiOutlineUndo } from 'react-icons/ai';
+import { Todoicon } from './ui/todoIcon';
 
-export const Todo = ({ task, toggleComplete, deleteTodo }) => {
+//rename task to todo
+//refaktorisati button, kreiraj novi fajl, property type i children
 
+const taskCompleted = '#93e4c1';
+const taskUncompleted = '#FFFFFF';
+
+export const Todo = ({ task: todo, toggleComplete, deleteTodo }) => {
   return (
-    <div className="
+    <div
+      className="
     p-8
     bg-white
     shadow-md
@@ -15,25 +23,37 @@ export const Todo = ({ task, toggleComplete, deleteTodo }) => {
     items-center
     justify-between
     "
-      style={{ backgroundColor: !task.completed ? '#FFFFFF' : '#93e4c1' }}>
+      style={{ backgroundColor: !todo.completed ? taskUncompleted : taskCompleted }}>
       <div>
-        <div className='text-left'>{task.task}</div>
-        <div className="text-gray-500 text-sm">{task.date}</div>
+        <div className="text-left">{todo.task}</div>
+        <div className="text-gray-500 text-sm">{todo.date}</div>
       </div>
       <div>
-        <button className="px-2 text-red-600">
-          <LiaTimesSolid onClick={() => deleteTodo(task.id)} />
-        </button>
-        {task.completed !== true ? (
-          <button className="px-2 text-green-600">
-            <FcCheckmark className={`${task.completed ? "completed" : "incompleted"}`} onClick={() => { toggleComplete(task.id) }} />
-          </button>
+        <Button type="button" className="px-2 text-red-600">
+          <Todoicon name="deleteIcon" onClick={() => deleteTodo(todo.id)} />
+        </Button>
+        {/* //napraviti novi fajl za icon(todoIcon), dinamicna klasa green */}
+        {/* //if completed ikona 1 else iknoa 2 */}
+        {todo.completed !== true ? (
+          <Button type="button" className="px-2 text-green-600">
+            <FcCheckmark
+              className={`${todo.completed ? 'completed' : 'incompleted'}`}
+              onClick={() => {
+                toggleComplete(todo.id);
+              }}
+            />
+          </Button>
         ) : (
-          <button className="px-2">
-            <AiOutlineUndo className={`${task.completed ? "completed" : "incompleted"}`} onClick={() => { toggleComplete(task.id) }} />
-          </button>
+          <Button type="button" className="px-2">
+            <AiOutlineUndo
+              className={`${todo.completed ? 'completed' : 'incompleted'}`}
+              onClick={() => {
+                toggleComplete(todo.id);
+              }}
+            />
+          </Button>
         )}
       </div>
     </div>
-  )
-}
+  );
+};
