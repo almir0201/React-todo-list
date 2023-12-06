@@ -28,7 +28,6 @@ export const TodoForm = ({ addTodo }) => {
     reset,
     register,
     props,
-    getValues,
     handleSubmit,
     formState: { errors }
   } = useForm({ resolver: zodResolver(schema) });

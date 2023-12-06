@@ -3,16 +3,14 @@ import { FcCheckmark } from 'react-icons/fc';
 import { LiaTimesSolid } from 'react-icons/lia';
 import { AiOutlineUndo } from 'react-icons/ai';
 
-const PATHS = {
-  completeIcon: 'FcCheckmark',
-  deleteIcon: 'MLiaTimesSolid',
-  revertIcon: 'AiOutlineUndo'
-};
-
 export const Todoicon = ({ name, ...props }) => {
+  if(name == 'complete'){
+    return <FcCheckmark  width={16} height={16} {...props} />
+  } 
+  if(name == 'delete'){
+    return <LiaTimesSolid  width={16} height={16} {...props} />
+  }
   return (
-    <svg height="16" width="16">
-      <path d={PATHS[name]} />;
-    </svg>
+      <AiOutlineUndo width={16} height={16} {...props} />
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from './ui/Button';
 import { FcCheckmark } from 'react-icons/fc';
-import { LiaTimesSolid } from 'react-icons/lia';
+// import { LiaTimesSolid } from 'react-icons/lia';
 import { AiOutlineUndo } from 'react-icons/ai';
 import { Todoicon } from './ui/todoIcon';
 
@@ -30,29 +30,19 @@ export const Todo = ({ task: todo, toggleComplete, deleteTodo }) => {
       </div>
       <div>
         <Button type="button" className="px-2 text-red-600">
-          <Todoicon name="deleteIcon" onClick={() => deleteTodo(todo.id)} />
+          <Todoicon name="delete" onClick={() => deleteTodo(todo.id)} />
         </Button>
         {/* //napraviti novi fajl za icon(todoIcon), dinamicna klasa green */}
         {/* //if completed ikona 1 else iknoa 2 */}
-        {todo.completed !== true ? (
-          <Button type="button" className="px-2 text-green-600">
-            <FcCheckmark
-              className={`${todo.completed ? 'completed' : 'incompleted'}`}
-              onClick={() => {
-                toggleComplete(todo.id);
-              }}
-            />
-          </Button>
-        ) : (
           <Button type="button" className="px-2">
-            <AiOutlineUndo
-              className={`${todo.completed ? 'completed' : 'incompleted'}`}
+            <Todoicon
+              name={`${!todo.completed ? 'complete' : ''}`}
+              className={`${todo.completed ? '' : 'text-green-600'}`}
               onClick={() => {
                 toggleComplete(todo.id);
               }}
             />
           </Button>
-        )}
       </div>
     </div>
   );
