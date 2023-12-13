@@ -15,10 +15,6 @@ import { Input } from './ui/Input';
 //dodati react context i postaviti temu dark na button preko tailwinda i css varijabli
 //prije contexta commitati
 
-// const Input = forwardRef(({ type, className, ...props }, ref) => {
-//   return <input type={type} className={className} {...props} ref={ref} />;
-// });
-
 const schema = z.object({
   value: z.string().min(1, { message: 'Todo is required' })
 });
